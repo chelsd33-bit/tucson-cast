@@ -74,4 +74,8 @@ AA 호스트 ──Surface──▶ CastScreen (SurfaceCallback)
 - 텍스트 입력(키보드)은 지원하지 않습니다.
 - 일부 앱은 보조 디스플레이 실행을 거부하거나 기본 화면으로 옮겨 갈 수 있습니다.
 - DRM/FLAG_SECURE 앱은 검은 화면으로 나옵니다.
-- 디버그 빌드는 모든 AA 호스트를 허용합니다(`ALLOW_ALL_HOSTS_VALIDATOR`). 배포용으로 쓰면 안 됩니다.
+
+## 보안 메모
+- Android Auto 서비스는 Google 공식 호스트(Android Auto 앱) 서명만 허용합니다(`AutoCastCarService.createHostValidator`).
+  이 서비스로 들어온 입력은 shell 권한으로 주입되므로, 디버그 빌드에서도 모든 호스트 허용(`ALLOW_ALL_HOSTS_VALIDATOR`)으로 바꾸지 마세요.
+- shell 권한 서비스(`DisplayService`)의 Binder는 Shizuku가 이 앱에만 전달합니다.
